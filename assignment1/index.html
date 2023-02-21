@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./assets/styles/normalize.css">
+    <link rel="stylesheet" href="./assets/styles/styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Crimson+Pro:wght@300;400;700&family=Open+Sans:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+    <title>Калькулятор расчёта стоимости автомобиля</title>
+</head>
+
+<body class="page">
+    <main class="wrapper">
+        <form class="form" name="form" action="#">
+            <div class="form__brand brand">
+                <label class="brand__label" for="brand">Выберите марку автомобиля</label>
+                <select class="brand__options" name="car-brand" id="brand">
+                    <option class="brand-name brand-name--1" value="Reno">Reno</option>
+                    <option class="brand-name brand-name--2" value="Opel">Opel</option>
+                    <option class="brand-name brand-name--3" value="Mazda">Mazda</option>
+                    <option class="brand-name brand-name--4" value="Jaguar">Jaguar</option>
+                </select>
+            </div>
+
+            <div class="form__model model">
+                <label class="model__label" for="model">Выберите модель автомобиля</label>
+                <select class="model__options" name="car-model" id="model">
+                    <option class="model-name model-name--1" value="Reno">Reno</option>
+                    <option class="model-name model-name--2" value="Opel">Opel</option>
+                    <option class="model-name model-name--3" value="Mazda">Mazda</option>
+                    <option class="model-name model-name--4" value="Jaguar">Jaguar</option>
+                </select>
+            </div>
+
+            <div class="form__fuel-options fuel-options">
+                <div class="fuel-options__question">
+                    <legend class="fuel__question__label">Выберите вид топлива</legend>
+                </div>
+
+                <div class="fuel-options__list fuel">
+                    <div class="fuel__type">
+                        <input class="fuel-choice fuel-type--1" type="radio" id="petrol" name="fuelType" value="petrol"
+                            checked />
+                        <label class="fuel-type-label--1" for="petrol">Бензин</label>
+                    </div>
+                    <div class="fuel__type">
+                        <input class="fuel-choice fuel-type--2" type="radio" id="diesel" name="fuelType"
+                            value="diesel" />
+                        <label class="fuel-type-label--2" for="diesel">Дизель</label>
+                    </div>
+                    <div class="fuel__type">
+                        <input class="fuel-choice fuel-type--3" type="radio" id="gas" name="fuelType" value="gas" />
+                        <label class="fuel-type-label--3" for="gas">Газ</label>
+                    </div>
+                    <div class="fuel__type">
+                        <input class="fuel-choice fuel-type--4" type="radio" id="electricity" name="fuelType"
+                            value="electricity" />
+                        <label class="fuel-type-label--4" for="electricity">Электричество</label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form__engine-volume engine-volume">
+                <label class="engine-volume__label" for="engineVolume">Введите объёма двигателя, л</label>
+                <input class="engine-volume__input" type="number" id="engineVolume" name="engine-volume">
+            </div>
+
+            <div class="form__car-condition vehicle-condition">
+                <div class="vehicle-condition__question">
+                    <legend class="vehicle-condition__question__label">Выберите состояние автомобиля</legend>
+                </div>
+
+                <div class="vehicle-condition__list condition">
+                    <div class="condition__type">
+                        <input class="condition__type__option condition__type--1" type="radio" id="new"
+                            name="conditionType" value="new" checked />
+                        <label class="condition__type-label--1" for="new">Новый</label>
+                    </div>
+                    <div class="condition__type">
+                        <input class="condition__type__option condition__type--2" type="radio" id="used"
+                            name="conditionType" value="used" />
+                        <label class="condition__type-label--2" for="used">Подержанный</label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form__owners owners">
+                <div class="owners__question">
+                    <legend class="owners__question__label">Выберите количество владельцев</legend>
+                </div>
+
+                <div class="owners__quantity number">
+                    <div class="number__option">
+                        <input class="number__option-choice number__option--1" type="radio" id="lessOwners"
+                            name="numberOfOwners" value="1-2" checked />
+                        <label class="number__option-label--1" for="lessOwners">1-2</label>
+                    </div>
+                    <div class="number__option">
+                        <input class="number__option-choice number__option--2" type="radio" id="moreOwners"
+                            name="numberOfOwners" value="moreThan3" />
+                        <label class="number__option-label--2" for="moreOwners">3 и более</label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form__payment payment">
+                <div class="payment__question">
+                    <legend class="payment__question__label">Выберите способ оплаты</legend>
+                </div>
+
+                <div class="payment__method method">
+                    <div class="method__option">
+                        <input class="method__option-choice method__option--1" type="radio" id="card"
+                            name="paymentMethod" value="card" checked />
+                        <label class="method__option-label--1" for="card">Карта</label>
+                    </div>
+                    <div class="method__option">
+                        <input class="method__option-choice method__option--2" type="radio" id="cash"
+                            name="paymentMethod" value="cash" />
+                        <label class="method__option-label--2" for="cash">Наличные</label>
+                    </div>
+                    <div class="method__option">
+                        <input class="method__option-choice method__option--2" type="radio" id="cash"
+                            name="paymentMethod" value="cash" />
+                        <label class="method__option-label--2" for="cash">Счет на юридическое лицо</label>
+                    </div>
+                </div>
+            </div>
+        </form>
+
+        <div class="button">
+            <button class="button__count">Рассчитать</button>
+        </div>
+
+
+
+    </main>
+    <script src="./assets/index.js"></script>
+</body>
+
+</html>

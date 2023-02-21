@@ -1,0 +1,101 @@
+.page {
+    margin: 0;
+    padding: 0;
+    max-width: 100%;
+    height: 100vh;
+}
+
+.wrapper{
+    margin: 5% 22% 10% 22%;
+    padding: 2% 5% 5% 5%;
+    max-width: 100%;
+    font-family: 'Open Sans', sans-serif;
+    background-color: white;
+    border: 1px dotted red
+}
+
+.form{
+    display: flex;
+    flex-direction: column;
+    justify-items: center;
+    row-gap: 1.5vw;
+}
+.brand{
+    display: grid;
+    grid-template-columns: 45% 1fr;
+    column-gap: 5%;
+}
+
+.brand__label {
+    text-align: end;
+}
+.model{
+    display: grid;
+    grid-template-columns: 45% 1fr;
+    column-gap: 5%;
+}
+
+.model__label{
+    text-align: end;
+}
+.fuel-options{
+    display: grid;
+    grid-template-columns: 45% 1fr;
+    column-gap: 5%;
+}
+.fuel-options__question{
+    display: flex;
+    justify-content: end;
+}
+
+.engine-volume{
+    display: grid;
+    grid-template-columns: 45% 1fr;
+    column-gap: 5%;
+}
+
+.engine-volume__label{
+    text-align: end;
+}
+.vehicle-condition{
+    display: grid;
+    grid-template-columns: 45% 1fr;
+    column-gap: 5%; 
+}
+
+.vehicle-condition__question{
+    display: flex;
+    justify-content: end;
+}
+
+.owners{
+    display: grid;
+    grid-template-columns: 45% 1fr;
+    column-gap: 5%;
+}
+.owners__question__label{
+    text-align: end;
+}
+
+.notExist{
+    display: none;
+}
+
+.payment{
+    display: grid;
+    grid-template-columns: 45% 1fr;
+    column-gap: 5%; 
+}
+.payment__question{
+    display: flex;
+    justify-content: end;
+}
+
+.method{
+    padding-bottom: 10%;
+}
+
+.button {
+    display: flex;
+    justify-content: center;
+}

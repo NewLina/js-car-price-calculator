@@ -1,5 +1,7 @@
 const brands=document.querySelector('.brand__options');
 const models=document.querySelector('.model__options');
+const engineVolumeInput=form.elements.engineVolume;
+const button=document.querySelector('.button__count');
 
 const reno=[
     {model: 'LOGAN', price: 500},
@@ -8,8 +10,8 @@ const reno=[
 ];
 const opel=[
     {model: 'CASCADA', price: 250},
-        {model: 'MOKKA', price: 2000},
-        {model: 'INSIGNIA', price: 185}
+    {model: 'MOKKA', price: 2000},
+    {model: 'INSIGNIA', price: 185}
 ];
 
 const mazda=[
@@ -27,16 +29,48 @@ const jaguar=[
 ];
 
 brands.addEventListener("change", makeChoice);
-
+makeChoice();
 
 function makeChoice() {
 if (brands.value ==="Reno"){
-reno.forEach(function (item) {
+    clean();
+    reno.forEach(function (item) {
     const modelOption=document.createElement('option');
     modelOption.className='model-name';
-    brands.prepend(modelOption);
+    models.appendChild(modelOption);
     modelOption.value=item.model;
-});
-} 
+    modelOption.innerHTML=`${item.model}`;  
+    });
+} else if (brands.value ==="Opel") {
+    clean();
+    opel.forEach(function (item) {
+    const modelOption=document.createElement('option');
+    modelOption.className='model-name';
+    models.appendChild(modelOption);
+    modelOption.value=item.model;
+    modelOption.innerHTML=`${item.model}`;        
+    });
+} else if (brands.value ==="Mazda") {
+    clean();
+    mazda.forEach(function (item) {
+    const modelOption=document.createElement('option');
+    modelOption.className='model-name';
+    models.appendChild(modelOption);
+    modelOption.value=item.model;
+    modelOption.innerHTML=`${item.model}`;      
+    });
+} else {
+    clean();
+    jaguar.forEach(function (item) {
+    const modelOption=document.createElement('option');
+    modelOption.className='model-name';
+    models.appendChild(modelOption);
+    modelOption.value=item.model;
+    modelOption.innerHTML=`${item.model}`;      
+    });  
 }
+} 
 
+function clean(){
+    models.innerHTML='';
+}

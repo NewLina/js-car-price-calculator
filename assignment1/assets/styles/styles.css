@@ -98,4 +98,12 @@
 .button {
     display: flex;
     justify-content: center;
+    padding-bottom: 5%;
+}
+
+.text{
+    margin: -2% 0 0 0;
+    font-size: 0.7vw;
+    color: rgb(216, 21, 21);
+    text-align: end;
 }

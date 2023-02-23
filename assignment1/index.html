@@ -81,6 +81,7 @@
                 <input class="engine-volume__input" type="number" id="engineVolume" name="engineVolume" min="1.1"
                     max="3.5">
             </div>
+            <p class="text"></p>
 
             <div class="form__car-condition vehicle-condition">
                 <div class="vehicle-condition__question">
@@ -102,7 +103,7 @@
             </div>
 
             <div class="form__owners owners">
-                <div class="owners__question">
+                <!-- <div class="owners__question">
                     <legend class="owners__question__label">Выберите количество владельцев</legend>
                 </div>
 
@@ -117,7 +118,7 @@
                             name="numberOfOwners" value="moreThan3" />
                         <label class="number__option-label--2" for="moreOwners">3 и более</label>
                     </div>
-                </div>
+                </div> -->
             </div>
 
             <div class="form__payment payment">
@@ -144,15 +145,16 @@
                 </div>
             </div>
         </form>
-
         <div class="button">
             <button class="button__count">Рассчитать</button>
         </div>
 
+        <div class="result"></div>
+
 
 
     </main>
-    <script src="./assets/index.js"></script>
+    <script type="module" src="./assets/index.js"></script>
 </body>
 
 </html>

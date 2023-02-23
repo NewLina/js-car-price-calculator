@@ -1,32 +1,22 @@
+import {reno, opel, mazda, jaguar} from './cars.js';
 const brands=document.querySelector('.brand__options');
 const models=document.querySelector('.model__options');
 const engineVolumeInput=form.elements.engineVolume;
 const button=document.querySelector('.button__count');
+const resultContainer=document.querySelector('.result');
+const text=document.querySelector('.text');
+const owners=document.querySelector('.owners');
+const conditionOptions=document.querySelectorAll('.condition__type__option');
 
-const reno=[
-    {model: 'LOGAN', price: 500},
-    {model: 'CLIO', price: 400},
-    {model: 'ESPACE', price: 1000}
-];
-const opel=[
-    {model: 'CASCADA', price: 250},
-    {model: 'MOKKA', price: 2000},
-    {model: 'INSIGNIA', price: 185}
-];
+const pricePerLiter=450;
 
-const mazda=[
-    {model: 'CX-3', price: 5000},
-    {model: 'CX-4', price: 5500},
-    {model: 'CX-9', price: 1450},
-    {model: 'MX-5', price: 6000}
-];
-
-const jaguar=[
-    {model: 'F-PACE', price: 5080},
-    {model: 'F-TYPE', price: 4800},
-    {model: 'XKR', price: 7000},
-    {model: 'XF', price: 6550}
-];
+const priceOfOptions = {
+    petrol: 20000,
+    diesel: 5000,
+    gas: 28000,
+    electricity: 35000,
+    new: 100000
+}
 
 brands.addEventListener("change", makeChoice);
 makeChoice();
@@ -39,7 +29,7 @@ if (brands.value ==="Reno"){
     modelOption.className='model-name';
     models.appendChild(modelOption);
     modelOption.value=item.model;
-    modelOption.innerHTML=`${item.model}`;  
+    modelOption.innerHTML=`${item.model}`;
     });
 } else if (brands.value ==="Opel") {
     clean();
@@ -57,7 +47,7 @@ if (brands.value ==="Reno"){
     modelOption.className='model-name';
     models.appendChild(modelOption);
     modelOption.value=item.model;
-    modelOption.innerHTML=`${item.model}`;      
+    modelOption.innerHTML=`${item.model}`;       
     });
 } else {
     clean();
@@ -73,4 +63,76 @@ if (brands.value ==="Reno"){
 
 function clean(){
     models.innerHTML='';
+}
+
+function checkEngineVolumeInput() {
+let content;
+if (engineVolumeInput.validity.rangeOverflow || engineVolumeInput.validity.rangeUnderflow){
+    content='Недопустимое значение. Введите число от 1.1 до 3.5';
+    engineVolumeInput.style.border='1.5px solid red';
+    clearResult();
+} else if (engineVolumeInput.value==='') {
+    content='Поле не заполнено!';
+    engineVolumeInput.style.border='1.5px solid red';
+    clearResult();
+} else{
+    content='';
+    engineVolumeInput.style.border='none';
+}
+text.innerHTML=content;
+}
+
+function clearResult() {
+    resultContainer.innerHTML = '';
+}
+function getFuelPrice() {
+    if (document.getElementById('petrol').checked){
+        return priceOfOptions.petrol;
+    } else if(document.getElementById('diesel').checked) {
+        return priceOfOptions.diesel;
+    } else if(document.getElementById('gas').checked) {
+        return priceOfOptions.gas;
+    } else {
+        return priceOfOptions.electricity;
+    }
+}
+
+function checkConditionOfCar() {
+    return document.getElementById('new').checked ? priceOfOptions.new : checkNumberOfOwners(); 
+}
+
+function checkNumberOfOwners(){
+    console.log('vdfvfd');
+}
+checkConditionOfCar();
+
+button.onclick = () => {
+    models.addEventListener("change", countTotalPrice());
+}
+function countTotalPrice(){
+    const selectedModel=document.getElementById('model').options.selectedIndex;
+    let sum=0;
+    function getModelPrice(){
+        if (brands.value ==="Reno"){
+            return reno[selectedModel].price;
+        } else if (brands.value ==="Opel") {
+            return opel[selectedModel].price;
+        } else if (brands.value ==="Mazda") {
+            return mazda[selectedModel].price;
+        } else {
+            return jaguar[selectedModel].price;
+        }
+    }
+    const priceOfEngineVolume=pricePerLiter*engineVolumeInput.value;
+
+
+    sum=sum+getModelPrice()+priceOfEngineVolume+getFuelPrice();
+    console.log(sum);
+
+    let displayResult='';
+        displayResult=`
+        <div class="result__sum">Стоимость автомобиля = ${sum} руб.</div>`;
+        resultContainer.innerHTML = displayResult;
+        checkEngineVolumeInput();
+
 }

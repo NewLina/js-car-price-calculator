@@ -18,8 +18,14 @@ const priceOfOptions = {
 }
 
 const priceByOwners = {
-    less: 30000,
-    more: 10000
+    less: 15000,
+    more: -10000
+}
+
+const paymentMethodPrice={
+    card: 1000,
+    cash: -50000,
+    invoice: 20000
 }
 
 brands.addEventListener("change", makeChoice);
@@ -129,7 +135,7 @@ function findConditionPriceByOwners() {
                 <div class="owners__quantity number">
                     <div class="number__option">
                         <input class="number__option-choice number__option--1" type="radio" id="lessOwners"
-                            name="numberOfOwners" value="1-2" checked />
+                            name="numberOfOwners" value="1-2"/>
                         <label class="number__option-label--1" for="lessOwners">1-2</label>
                     </div>
                     <div class="number__option">
@@ -145,6 +151,16 @@ function getOwnersPrice(){
         return priceByOwners.less;
     } else {
         return priceByOwners.more;
+    }
+}
+
+function getPaymentMethodPrice(){
+    if (document.getElementById('cash').checked){
+        return paymentMethodPrice.cash;
+    } else if(document.getElementById('invoice').checked) {
+        return paymentMethodPrice.invoice;
+    } else {
+        return paymentMethodPrice.card;
     }
 }
 
@@ -168,7 +184,7 @@ function countTotalPrice(){
     const priceOfEngineVolume=pricePerLiter*engineVolumeInput.value;
 
 
-    sum=sum+getModelPrice()+priceOfEngineVolume+getFuelPrice()+checkConditionPrice();
+    sum=sum+getModelPrice()+priceOfEngineVolume+getFuelPrice()+checkConditionPrice()+getPaymentMethodPrice();
     console.log(sum);
 
     let displayResult='';

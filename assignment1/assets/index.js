@@ -6,7 +6,6 @@ const button=document.querySelector('.button__count');
 const resultContainer=document.querySelector('.result');
 const text=document.querySelector('.text');
 const owners=document.querySelector('.owners');
-const conditionOptions=document.querySelectorAll('.condition__type__option');
 
 const pricePerLiter=450;
 
@@ -16,6 +15,11 @@ const priceOfOptions = {
     gas: 28000,
     electricity: 35000,
     new: 100000
+}
+
+const priceByOwners = {
+    less: 30000,
+    more: 10000
 }
 
 brands.addEventListener("change", makeChoice);
@@ -97,14 +101,52 @@ function getFuelPrice() {
     }
 }
 
-function checkConditionOfCar() {
-    return document.getElementById('new').checked ? priceOfOptions.new : checkNumberOfOwners(); 
+const carConditionOption=form.elements.conditionType;
+for (let i=0; i<carConditionOption.length; i++) {
+    carConditionOption[i].onchange=checkConditionPrice;
 }
 
-function checkNumberOfOwners(){
-    console.log('vdfvfd');
+function checkConditionPrice() {
+    if (carConditionOption.value==='new') {
+        owners.innerHTML = '';
+        let conditionPrice=0;
+        conditionPrice=priceOfOptions.new;
+        return conditionPrice;
+    } else if (carConditionOption.value==='used'){
+        findConditionPriceByOwners();
+        let conditionPrice=0;
+        conditionPrice=conditionPrice+getOwnersPrice();
+        return conditionPrice;
+    };
 }
-checkConditionOfCar();
+function findConditionPriceByOwners() {
+    let displayOwners='';
+        displayOwners=`
+        <div class="owners__question">
+                    <legend class="owners__question__label">Выберите количество владельцев</legend>
+                </div>
+
+                <div class="owners__quantity number">
+                    <div class="number__option">
+                        <input class="number__option-choice number__option--1" type="radio" id="lessOwners"
+                            name="numberOfOwners" value="1-2" checked />
+                        <label class="number__option-label--1" for="lessOwners">1-2</label>
+                    </div>
+                    <div class="number__option">
+                        <input class="number__option-choice number__option--2" type="radio" id="moreOwners"
+                            name="numberOfOwners" value="moreThan3" />
+                        <label class="number__option-label--2" for="moreOwners">3 и более</label>
+                    </div>
+                </div>`;
+        owners.innerHTML = displayOwners;
+}
+function getOwnersPrice(){
+    if (document.getElementById('lessOwners').checked){
+        return priceByOwners.less;
+    } else {
+        return priceByOwners.more;
+    }
+}
 
 button.onclick = () => {
     models.addEventListener("change", countTotalPrice());
@@ -126,7 +168,7 @@ function countTotalPrice(){
     const priceOfEngineVolume=pricePerLiter*engineVolumeInput.value;
 
 
-    sum=sum+getModelPrice()+priceOfEngineVolume+getFuelPrice();
+    sum=sum+getModelPrice()+priceOfEngineVolume+getFuelPrice()+checkConditionPrice();
     console.log(sum);
 
     let displayResult='';
@@ -136,3 +178,5 @@ function countTotalPrice(){
         checkEngineVolumeInput();
 
 }
+
+

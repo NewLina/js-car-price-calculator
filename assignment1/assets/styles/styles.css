@@ -6,19 +6,20 @@
 }
 
 .wrapper{
-    margin: 5% 22% 10% 22%;
+    margin: 5% 24% 10% 24%;
     padding: 2% 5% 5% 5%;
     max-width: 100%;
     font-family: 'Open Sans', sans-serif;
     background-color: white;
-    border: 1px dotted red
+    border: 1px dotted rgb(0, 132, 255)
 }
 
 .form{
     display: flex;
     flex-direction: column;
     justify-items: center;
-    row-gap: 1.5vw;
+    row-gap: 1vw;
+    font-size: 1.05vw;
 }
 .brand{
     display: grid;
@@ -47,11 +48,18 @@
     display: flex;
     justify-content: end;
 }
+.brand__options, .model__options{
+    border: 1px solid rgb(16, 62, 131);
+}
 
 .engine-volume{
     display: grid;
     grid-template-columns: 45% 1fr;
     column-gap: 5%;
+    padding: 1% 1.5% 1% 1.5%;
+}
+.engine-volume__input{
+    border: 1px solid rgb(16, 62, 131);
 }
 
 .engine-volume__label{
@@ -99,6 +107,15 @@
     display: flex;
     justify-content: center;
     padding-bottom: 5%;
+    font-size: 1.1vw;
+    
+}
+.button__count{
+    background-color: rgb(24, 121, 212);
+    color: beige;
+    border: 1px solid rgb(16, 62, 131);
+    padding: 1.2% 2.5% 1.2% 2.5%;
+    border-radius: 0.5vw;
 }
 
 .text{

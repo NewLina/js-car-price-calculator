@@ -119,7 +119,8 @@ function checkConditionPrice() {
         conditionPrice=priceOfOptions.new;
         return conditionPrice;
     } else if (carConditionOption.value==='used'){
-        findConditionPriceByOwners();
+        if (!document.getElementById('ownersSection')){
+        findConditionPriceByOwners();}
         let conditionPrice=0;
         conditionPrice=conditionPrice+getOwnersPrice();
         return conditionPrice;
@@ -128,7 +129,7 @@ function checkConditionPrice() {
 function findConditionPriceByOwners() {
     let displayOwners='';
         displayOwners=`
-        <div id="ownersSection" class="owners__question">
+        <div id='ownersSection' class="owners__question">
                     <legend class="owners__question__label">Выберите количество владельцев</legend>
                 </div>
 
@@ -209,7 +210,6 @@ function countTotalPrice(){
     const priceOfEngineVolume=pricePerLiter*engineVolumeInput.value;
 
     sum=sum+getModelPrice()+priceOfEngineVolume+getFuelPrice()+checkConditionPrice()+getPaymentMethodPrice();
-    console.log(checkConditionPrice());
 
     let displayResult='';
         displayResult=`

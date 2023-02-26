@@ -181,15 +181,44 @@ function countTotalPrice(){
             return jaguar[selectedModel].price;
         }
     }
+    
+    function getModelName(){
+        if (brands.value ==="Reno"){
+            return reno[selectedModel].model;
+        } else if (brands.value ==="Opel") {
+            return opel[selectedModel].model;
+        } else if (brands.value ==="Mazda") {
+            return mazda[selectedModel].model;
+        } else {
+            return jaguar[selectedModel].model;
+        }
+    }
+    
+    function getModelPicture(){
+        if (brands.value ==="Reno"){
+            return reno[selectedModel].image;
+        } else if (brands.value ==="Opel") {
+            return opel[selectedModel].image;
+        } else if (brands.value ==="Mazda") {
+            return mazda[selectedModel].image;
+        } else {
+            return jaguar[selectedModel].image;
+        }
+    }
+
     const priceOfEngineVolume=pricePerLiter*engineVolumeInput.value;
 
-
     sum=sum+getModelPrice()+priceOfEngineVolume+getFuelPrice()+checkConditionPrice()+getPaymentMethodPrice();
-    console.log(sum);
+    console.log(checkConditionPrice());
 
     let displayResult='';
         displayResult=`
-        <div class="result__sum">Стоимость автомобиля = ${sum} руб.</div>`;
+        <div class="result__sum">Стоимость автомобиля = ${sum} руб.</div>
+        <div class="results__content content">
+        <div class="content__brand-name">${brands.options[brands.selectedIndex].text}</div>
+        <div class="content__model-name">${getModelName()}</div>
+        <div class="content__model-image"><img class="image" src='${getModelPicture()}' alt="model-picture"></div>
+        </div>`;
         resultContainer.innerHTML = displayResult;
         checkEngineVolumeInput();
 

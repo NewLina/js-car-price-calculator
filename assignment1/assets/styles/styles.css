@@ -3,6 +3,7 @@
     padding: 0;
     max-width: 100%;
     height: 100vh;
+    background-color: whitesmoke;
 }
 
 .wrapper{
@@ -123,4 +124,23 @@
     font-size: 0.7vw;
     color: rgb(216, 21, 21);
     text-align: end;
+}
+
+.content__model-image{
+    width: 40vw;
+    text-align: center;
+}
+.image{
+    max-width: 100%;
+}
+.result__sum{
+    padding-bottom: 4%;
+    font-weight: bold;
+    font-size: 1.5vw;
+}
+.content{
+    font-size: 1.2vw;
+}
+.content__brand-name, .content__model-name{
+    padding-bottom: 2%;
 }

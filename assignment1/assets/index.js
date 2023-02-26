@@ -128,7 +128,7 @@ function checkConditionPrice() {
 function findConditionPriceByOwners() {
     let displayOwners='';
         displayOwners=`
-        <div class="owners__question">
+        <div id="ownersSection" class="owners__question">
                     <legend class="owners__question__label">Выберите количество владельцев</legend>
                 </div>
 

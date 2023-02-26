@@ -3,16 +3,18 @@
     padding: 0;
     max-width: 100%;
     height: 100vh;
-    background-color: whitesmoke;
+    background-image: url('../images/back.jpg');
+    background-size: cover;
 }
 
 .wrapper{
     margin: 5% 24% 10% 24%;
     padding: 2% 5% 5% 5%;
     max-width: 100%;
-    font-family: 'Open Sans', sans-serif;
-    background-color: white;
-    border: 1px dotted rgb(0, 132, 255)
+    font-family: 'Montserrat', sans-serif;;
+    background-color: #d5d5d7ef;
+    border: 1px dashed rgba(0, 0, 0, 0.288);
+    border-radius: 1.5vw;
 }
 
 .form{
@@ -50,7 +52,7 @@
     justify-content: end;
 }
 .brand__options, .model__options{
-    border: 1px solid rgb(16, 62, 131);
+    border: 1px solid rgb(105, 111, 121);
 }
 
 .engine-volume{
@@ -60,7 +62,7 @@
     padding: 1% 1.5% 1% 1.5%;
 }
 .engine-volume__input{
-    border: 1px solid rgb(16, 62, 131);
+    border: 1px solid rgb(105, 111, 121);
 }
 
 .engine-volume__label{
@@ -112,9 +114,9 @@
     
 }
 .button__count{
-    background-color: rgb(24, 121, 212);
-    color: beige;
-    border: 1px solid rgb(16, 62, 131);
+    background-color: rgb(105, 111, 121);
+    color: rgb(240, 238, 238);
+    border: 1px solid rgb(67, 70, 73);
     padding: 1.2% 2.5% 1.2% 2.5%;
     border-radius: 0.5vw;
 }

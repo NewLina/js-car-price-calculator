@@ -31,70 +31,59 @@ const paymentMethodPrice={
 brands.addEventListener("change", makeChoice);
 makeChoice();
 
-function makeChoice() {
-if (brands.value ==="Reno"){
-    clean();
-    reno.forEach(function (item) {
+function makeElement(item){
     const modelOption=document.createElement('option');
     modelOption.className='model-name';
     models.appendChild(modelOption);
     modelOption.value=item.model;
     modelOption.innerHTML=`${item.model}`;
-    });
-} else if (brands.value ==="Opel") {
-    clean();
-    opel.forEach(function (item) {
-    const modelOption=document.createElement('option');
-    modelOption.className='model-name';
-    models.appendChild(modelOption);
-    modelOption.value=item.model;
-    modelOption.innerHTML=`${item.model}`;        
-    });
-} else if (brands.value ==="Mazda") {
-    clean();
-    mazda.forEach(function (item) {
-    const modelOption=document.createElement('option');
-    modelOption.className='model-name';
-    models.appendChild(modelOption);
-    modelOption.value=item.model;
-    modelOption.innerHTML=`${item.model}`;       
-    });
-} else {
-    clean();
-    jaguar.forEach(function (item) {
-    const modelOption=document.createElement('option');
-    modelOption.className='model-name';
-    models.appendChild(modelOption);
-    modelOption.value=item.model;
-    modelOption.innerHTML=`${item.model}`;      
-    });  
 }
+
+function makeChoice() {
+    if (brands.value ==="Reno"){
+        clearHtml(models);
+        reno.forEach(function (item) {
+            makeElement(item);
+        });
+    } else if (brands.value ==="Opel") {
+        clearHtml(models);
+        opel.forEach(function (item) {
+            makeElement(item);       
+        });
+    } else if (brands.value ==="Mazda") {
+        clearHtml(models);
+        mazda.forEach(function (item) {
+            makeElement(item);       
+        });
+    } else {
+        clearHtml(models);
+        jaguar.forEach(function (item) {
+            makeElement(item);      
+        });  
+    }
 } 
 
-function clean(){
-    models.innerHTML='';
+function clearHtml(code) {
+    code.innerHTML = '';
 }
 
 function checkEngineVolumeInput() {
-let content;
-if (engineVolumeInput.validity.rangeOverflow || engineVolumeInput.validity.rangeUnderflow){
-    content='Недопустимое значение. Введите число от 1.1 до 3.5';
-    engineVolumeInput.style.border='1.5px solid red';
-    clearResult();
-} else if (engineVolumeInput.value==='') {
-    content='Поле не заполнено!';
-    engineVolumeInput.style.border='1.5px solid red';
-    clearResult();
-} else{
-    content='';
-    engineVolumeInput.style.border='none';
-}
-text.innerHTML=content;
+    let content;
+    if (engineVolumeInput.validity.rangeOverflow || engineVolumeInput.validity.rangeUnderflow){
+        content='Недопустимое значение. Введите число от 1.1 до 3.5';
+        engineVolumeInput.style.border='1.5px solid red';
+        clearResult();
+    } else if (engineVolumeInput.value==='') {
+        content='Поле не заполнено!';
+        engineVolumeInput.style.border='1.5px solid red';
+        clearHtml(resultContainer);
+    } else{
+        content='';
+        engineVolumeInput.style.border='none';
+    }
+    text.innerHTML=content;
 }
 
-function clearResult() {
-    resultContainer.innerHTML = '';
-}
 function getFuelPrice() {
     if (document.getElementById('petrol').checked){
         return priceOfOptions.petrol;
@@ -145,7 +134,7 @@ function findConditionPriceByOwners() {
                         <label class="number__option-label--2" for="moreOwners">3 и более</label>
                     </div>
                 </div>`;
-        owners.innerHTML = displayOwners;
+    owners.innerHTML = displayOwners;
 }
 function getOwnersPrice(){
     if (document.getElementById('lessOwners').checked){
@@ -219,8 +208,8 @@ function countTotalPrice(){
         <div class="content__model-name">${getModelName()}</div>
         <div class="content__model-image"><img class="image" src='${getModelPicture()}' alt="model-picture"></div>
         </div>`;
-        resultContainer.innerHTML = displayResult;
-        checkEngineVolumeInput();
+    resultContainer.innerHTML = displayResult;
+    checkEngineVolumeInput();
 
 }
 

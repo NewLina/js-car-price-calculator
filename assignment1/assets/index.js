@@ -1,13 +1,13 @@
-import {reno, opel, mazda, jaguar} from './cars.js';
-const brands=document.querySelector('.brand__options');
-const models=document.querySelector('.model__options');
-const engineVolumeInput=form.elements.engineVolume;
-const button=document.querySelector('.button__count');
-const resultContainer=document.querySelector('.result');
-const text=document.querySelector('.text');
-const owners=document.querySelector('.owners');
+import { reno, opel, mazda, jaguar } from './cars.js';
+const brands = document.querySelector('.brand__options');
+const models = document.querySelector('.model__options');
+const engineVolumeInput = form.elements.engineVolume;
+const button = document.querySelector('.button__count');
+const resultContainer = document.querySelector('.result');
+const text = document.querySelector('.text');
+const owners = document.querySelector('.owners');
 
-const pricePerLiter=450;
+const pricePerLiter = 450;
 
 const priceOfOptions = {
     petrol: 20000,
@@ -22,7 +22,7 @@ const priceByOwners = {
     more: -10000
 }
 
-const paymentMethodPrice={
+const paymentMethodPrice = {
     card: 1000,
     cash: -50000,
     invoice: 20000
@@ -31,37 +31,37 @@ const paymentMethodPrice={
 brands.addEventListener("change", makeChoice);
 makeChoice();
 
-function makeElement(item){
-    const modelOption=document.createElement('option');
-    modelOption.className='model-name';
+function makeElement(item) {
+    const modelOption = document.createElement('option');
+    modelOption.className = 'model-name';
     models.appendChild(modelOption);
-    modelOption.value=item.model;
-    modelOption.innerHTML=`${item.model}`;
+    modelOption.value = item.model;
+    modelOption.innerHTML = `${item.model}`;
 }
 
 function makeChoice() {
-    if (brands.value ==="Reno"){
+    if (brands.value === "Reno") {
         clearHtml(models);
         reno.forEach(function (item) {
             makeElement(item);
         });
-    } else if (brands.value ==="Opel") {
+    } else if (brands.value === "Opel") {
         clearHtml(models);
         opel.forEach(function (item) {
-            makeElement(item);       
+            makeElement(item);
         });
-    } else if (brands.value ==="Mazda") {
+    } else if (brands.value === "Mazda") {
         clearHtml(models);
         mazda.forEach(function (item) {
-            makeElement(item);       
+            makeElement(item);
         });
     } else {
         clearHtml(models);
         jaguar.forEach(function (item) {
-            makeElement(item);      
-        });  
+            makeElement(item);
+        });
     }
-} 
+}
 
 function clearHtml(code) {
     code.innerHTML = '';
@@ -69,55 +69,56 @@ function clearHtml(code) {
 
 function checkEngineVolumeInput() {
     let content;
-    if (engineVolumeInput.validity.rangeOverflow || engineVolumeInput.validity.rangeUnderflow){
-        content='Недопустимое значение. Введите число от 1.1 до 3.5';
-        engineVolumeInput.style.border='1.5px solid red';
-        clearResult();
-    } else if (engineVolumeInput.value==='') {
-        content='Поле не заполнено!';
-        engineVolumeInput.style.border='1.5px solid red';
+    if (engineVolumeInput.validity.rangeOverflow || engineVolumeInput.validity.rangeUnderflow) {
+        content = 'Недопустимое значение. Введите число от 1.1 до 3.5';
+        engineVolumeInput.style.border = '1.5px solid red';
         clearHtml(resultContainer);
-    } else{
-        content='';
-        engineVolumeInput.style.border='none';
+    } else if (engineVolumeInput.value === '') {
+        content = 'Поле не заполнено!';
+        engineVolumeInput.style.border = '1.5px solid red';
+        clearHtml(resultContainer);
+    } else {
+        content = '';
+        engineVolumeInput.style.border = 'none';
     }
-    text.innerHTML=content;
+    text.innerHTML = content;
 }
 
 function getFuelPrice() {
-    if (document.getElementById('petrol').checked){
+    if (document.getElementById('petrol').checked) {
         return priceOfOptions.petrol;
-    } else if(document.getElementById('diesel').checked) {
+    } else if (document.getElementById('diesel').checked) {
         return priceOfOptions.diesel;
-    } else if(document.getElementById('gas').checked) {
+    } else if (document.getElementById('gas').checked) {
         return priceOfOptions.gas;
     } else {
         return priceOfOptions.electricity;
     }
 }
 
-const carConditionOption=form.elements.conditionType;
-for (let i=0; i<carConditionOption.length; i++) {
-    carConditionOption[i].onchange=checkConditionPrice;
+const carConditionOption = form.elements.conditionType;
+for (let i = 0; i < carConditionOption.length; i++) {
+    carConditionOption[i].onchange = checkConditionPrice;
 }
 
 function checkConditionPrice() {
-    if (carConditionOption.value==='new') {
+    if (carConditionOption.value === 'new') {
         owners.innerHTML = '';
-        let conditionPrice=0;
-        conditionPrice=priceOfOptions.new;
+        let conditionPrice = 0;
+        conditionPrice = priceOfOptions.new;
         return conditionPrice;
-    } else if (carConditionOption.value==='used'){
-        if (!document.getElementById('ownersSection')){
-        findConditionPriceByOwners();}
-        let conditionPrice=0;
-        conditionPrice=conditionPrice+getOwnersPrice();
+    } else if (carConditionOption.value === 'used') {
+        if (!document.getElementById('ownersSection')) {
+            findConditionPriceByOwners();
+        }
+        let conditionPrice = 0;
+        conditionPrice = conditionPrice + getOwnersPrice();
         return conditionPrice;
     };
 }
 function findConditionPriceByOwners() {
-    let displayOwners='';
-        displayOwners=`
+    let displayOwners = '';
+    displayOwners = `
         <div id='ownersSection' class="owners__question">
                     <legend class="owners__question__label">Выберите количество владельцев</legend>
                 </div>
@@ -136,18 +137,18 @@ function findConditionPriceByOwners() {
                 </div>`;
     owners.innerHTML = displayOwners;
 }
-function getOwnersPrice(){
-    if (document.getElementById('lessOwners').checked){
+function getOwnersPrice() {
+    if (document.getElementById('lessOwners').checked) {
         return priceByOwners.less;
     } else {
         return priceByOwners.more;
     }
 }
 
-function getPaymentMethodPrice(){
-    if (document.getElementById('cash').checked){
+function getPaymentMethodPrice() {
+    if (document.getElementById('cash').checked) {
         return paymentMethodPrice.cash;
-    } else if(document.getElementById('invoice').checked) {
+    } else if (document.getElementById('invoice').checked) {
         return paymentMethodPrice.invoice;
     } else {
         return paymentMethodPrice.card;
@@ -157,51 +158,51 @@ function getPaymentMethodPrice(){
 button.onclick = () => {
     models.addEventListener("change", countTotalPrice());
 }
-function countTotalPrice(){
-    const selectedModel=document.getElementById('model').options.selectedIndex;
-    let sum=0;
-    function getModelPrice(){
-        if (brands.value ==="Reno"){
+function countTotalPrice() {
+    const selectedModel = document.getElementById('model').options.selectedIndex;
+    let sum = 0;
+    function getModelPrice() {
+        if (brands.value === "Reno") {
             return reno[selectedModel].price;
-        } else if (brands.value ==="Opel") {
+        } else if (brands.value === "Opel") {
             return opel[selectedModel].price;
-        } else if (brands.value ==="Mazda") {
+        } else if (brands.value === "Mazda") {
             return mazda[selectedModel].price;
         } else {
             return jaguar[selectedModel].price;
         }
     }
-    
-    function getModelName(){
-        if (brands.value ==="Reno"){
+
+    function getModelName() {
+        if (brands.value === "Reno") {
             return reno[selectedModel].model;
-        } else if (brands.value ==="Opel") {
+        } else if (brands.value === "Opel") {
             return opel[selectedModel].model;
-        } else if (brands.value ==="Mazda") {
+        } else if (brands.value === "Mazda") {
             return mazda[selectedModel].model;
         } else {
             return jaguar[selectedModel].model;
         }
     }
-    
-    function getModelPicture(){
-        if (brands.value ==="Reno"){
+
+    function getModelPicture() {
+        if (brands.value === "Reno") {
             return reno[selectedModel].image;
-        } else if (brands.value ==="Opel") {
+        } else if (brands.value === "Opel") {
             return opel[selectedModel].image;
-        } else if (brands.value ==="Mazda") {
+        } else if (brands.value === "Mazda") {
             return mazda[selectedModel].image;
         } else {
             return jaguar[selectedModel].image;
         }
     }
 
-    const priceOfEngineVolume=pricePerLiter*engineVolumeInput.value;
+    const priceOfEngineVolume = pricePerLiter * engineVolumeInput.value;
 
-    sum=sum+getModelPrice()+priceOfEngineVolume+getFuelPrice()+checkConditionPrice()+getPaymentMethodPrice();
+    sum = sum + getModelPrice() + priceOfEngineVolume + getFuelPrice() + checkConditionPrice() + getPaymentMethodPrice();
 
-    let displayResult='';
-        displayResult=`
+    let displayResult = '';
+    displayResult = `
         <div class="result__sum">Стоимость автомобиля = ${sum} руб.</div>
         <div class="results__content content">
         <div class="content__brand-name">${brands.options[brands.selectedIndex].text}</div>
